@@ -1,271 +1,307 @@
-game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "迪脚本",
-  Text = "欢迎使用迪脚本",
-  Duration = 1,
-  Callback = bindable,
-  Button1 = "脚本功能多多",
-  Button2 = "感谢您的使用",
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "😡脚本",
+    Text = "正在加载（反挂机已开启）",
+    Duration = 3, 
 })
-wait(1.5)
-game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "迪脚本",
-  Text = "迪脚本更新日期12月6日修复问题 本来想搞成检测服务器ID的 后面还是因为麻烦 就不搞了",
-  Icon = "rbxassetid://73219704811084",
-  Duration = 1,
-  Callback = bindable,
-  Button2 = "请勿倒卖",
+print("Anti Afk On")
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		   wait(1)
+		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		end)
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ddjlb7598/-3.0000/refs/heads/main/%E5%A4%A7%E5%8F%B8%E9%A9%ACLOL%20UI.lua"))()
+
+CoreGui:SetCore("SendNotification", {
+    Title = "迪脚本",
+    Text = "加载成功！",
+    Duration = 5, 
 })
-wait(1.5)
-game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "迪脚本",
-  Text = "每周都会缝合",
-  Duration = 2,
-  Callback = bindable,
-  Button1 = "祝您使用愉快",
-  Button2 = "玩的开心",
+local Window = OrionLib:MakeWindow({Name = "迪脚本", HidePremium = false, IntroEnabled = false, ConfigFolder = "SB2Mod"})
+local Tab = Window:MakeTab({
+	Name = "主要的",
+	Icon = "rbxassetid://73219704811084",
+	PremiumOnly = false
 })
-wait(1.5)
-local VirtualUserService = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-  
-  VirtualUserService:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-  wait(1)
-  VirtualUserService:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+
+Tab:AddSlider({
+	Name = "速度",
+	Min = 16,
+	Max = 200,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "数值",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+Tab:AddSlider({
+	Name = "跳跃高度",
+	Min = 50,
+	Max = 200,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "数值",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+Tab:AddTextbox({
+	Name = "跳跃高度设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end
+})
+
+Tab:AddTextbox({
+	Name = "移动速度设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end
+})
+
+Tab:AddTextbox({
+	Name = "重力设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Workspace.Gravity = Value
+	end
+})
+
+Tab:AddToggle({
+	Name = "夜视",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+		    game.Lighting.Ambient = Color3.new(1, 1, 1)
+		else
+		    game.Lighting.Ambient = Color3.new(0, 0, 0)
+		end
+	end
+})
+
+Tab:AddButton({
+	Name = "飞行V3（隐藏）",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/U27yQRxS'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "甩飞别人",
+	Callback = function()
+     loadstring(game:HttpGet("https://pastebin.com/raw/GnvPVBEi"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "穿墙",
+	Default = false,
+	Callback = function(Value)
+	local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local Clipon = true
+
+Stepped = game:GetService("RunService").Stepped:Connect(function()
+	if not Clipon == false then
+		for a, b in pairs(Workspace:GetChildren()) do
+        if b.Name == Players.LocalPlayer.Name then
+        for i, v in pairs(Workspace[Players.LocalPlayer.Name]:GetChildren()) do
+        if v:IsA("BasePart") then
+        v.CanCollide = false
+        end end end end
+	else
+		Stepped:Disconnect()
+	end
 end)
-game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "迪脚本",
-  Text = "未开启反挂机",
-  Duration = 2,
-  Callback = bindable,
-  Button1 = "开启成功",
-  Button2 = "谢谢使用",
+  	end    
 })
-local RevenantLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
-RevenantLib.DefaultColor = Color3.fromRGB(255, 0, 0)
-RevenantLib:Notification({
-  Text = "迪脚本作者赠予: 自制\u{e000}",
-  Duration = 20,
+
+Tab:AddButton({
+	Name = "透视",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/MA8jhPWT'))()
+  	end    
 })
-wait(1)
-RevenantLib:Notification({
-  Text = "迪脚本帮助者:😂 没有\u{e000}",
-  Duration = 20,
+
+Tab:AddButton({
+	Name = "吸取全部玩家",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/hQSBGsw2'))()
+  	end    
 })
-wait(1)
-RevenantLib:Notification({
-  Text = "谢谢支持^ω^",
-  Duration = 6,
+
+Tab:AddButton({
+	Name = "人物无敌",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/H3RLCWWZ'))()
+	end    
 })
-local PlayerConfig = {
-  playernamedied = "",
-  dropdown = {},
-  LoopTeleport = false,
-  message = "",
-  sayCount = 1,
-  sayFast = false,
-  autoSay = false,
-}
-local MovementConfig = {
-  tpwalkslow = 0,
-  tpwalkmobile = 0,
-  tpwalkquick = 0,
-  tpwalkslowenable = false,
-  tpwalkmobileenable = false,
-  tpwalkquickenable = false,
-  spinspeed = 0,
-  HitboxStatue = false,
-  HitboxSize = 0,
-  HitboxTransparency = 1,
-  HitboxBrickColor = "Really red",
-  DefaultFPS = 60,
-  CurrentFPS = 60,
-  FPSLocked = false,
-  FPSVisible = false,
-}
-local ColorConfig = {
-  ['红色']= Color3.fromRGB(255, 0, 0),
-  ['蓝色'] = Color3.fromRGB(0, 0, 255),
-  ['黄色'] = Color3.fromRGB(255, 255, 0),
-  ['绿色'] = Color3.fromRGB(0, 255, 0),
-  ['青色'] = Color3.fromRGB(0, 255, 255),
-  ['橙色'] = Color3.fromRGB(255, 165, 0),
-  ['紫色'] = Color3.fromRGB(128, 0, 128),
-  ['白色'] = Color3.fromRGB(255, 255, 255),
-  ['黑色'] = Color3.fromRGB(0, 0, 0),
-}
-local AimConfig = {
-  fovsize = 50,
-  fovlookAt = false,
-  fovcolor = Color3.fromRGB(0, 255, 0),
-  fovthickness = 2,
-  Visible = false,
-  distance = 200,
-  ViewportSize = 2,
-  Transparency = 5,
-  Position = "Head",
-  teamCheck = false,
-  wallCheck = false,
-  aliveCheck = false,
-  prejudgingselfsighting = false,
-  prejudgingselfsightingdistance = 100,
-  smoothness = 5,
-  aimSpeed = 5,
-  targetLock = false,
-  hitMarker = false,
-  dynamicFOV = false,
-  dynamicFOVScale = 1.5,
-  priorityMode = "Smart",
-  aimMode = "AI",
-  autoFire = false,
-  fireRate = 10,
-  bulletDelay = 0.1,
-  weaponSwitch = false,
-  threatPriority = false,
-  healthPriority = false,
-}
-local BodyPartMap = {
-  ['头部'] = "Head",
-  ['脖子'] = "HumanoidRootPart",
-  ['躯干'] = "Torso",
-  ['左臂'] = "Left Arm",
-  ['右臂'] = "Right Arm",
-  ['左腿'] = "Left Leg",
-  ['右腿'] = "Right Leg",
-  ['左手'] = "LeftHand",
-  ['右手'] = "RightHand",
-  ['左小臂'] = "LeftLowerArm",
-  ['右小臂'] = "RightLowerArm",
-  ['左大臂'] = "LeftUpperArm",
-  ['右大臂'] = "RightUpperArm",
-  ['左脚'] = "LeftFoot",
-  ['左小腿'] = "LeftLowerLeg",
-  ['上半身'] = "UpperTorso",
-  ['左大腿'] = "LeftUpperLeg",
-  ['右脚'] = "RightFoot",
-  ['右小腿'] = "RightLowerLeg",
-  ['下半身'] = "LowerTorso",
-  ['右大腿'] = "RightUpperLeg",
-}
-function shuaxinlb(includeSelf)
-  
-  PlayerConfig.dropdown = {}
-  if includeSelf == true then
-    for _, player in pairs(game.Players:GetPlayers()) do
-      table.insert(PlayerConfig.dropdown, player.Name)
+
+Tab:AddButton({
+	Name = "隐身(E)",
+	Callback = function()
+	 loadstring(game:HttpGet('https://pastebin.com/raw/nwGEvkez'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "空",
+	Callback = function()
+     loadstring(game:HttpGet(""))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "飞车(E)(别人看到)",
+	Callback = function()
+     loadstring(game:HttpGet("https://pastebin.com/raw/G3GnBCyC", true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "迪脚本",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/ddjlb7598/-2.0/refs/heads/main/%E8%BF%AA%E8%84%9A%E6%9C%AC2.0.lua"))()
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "脚本大全缝合",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "DOORS👁"
+})
+
+Tab:AddButton({
+	Name = "最强",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/R8QMbhzv'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "十字架",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/ibbWwU6q'))()
+  	end
+})
+
+Tab:AddButton({
+	Name = "极速传奇",
+	Callback = function()
+loadstring(Game:HttpGet("https://pastebin.com/raw/0A4J7V8M"))()
+end
+})
+
+Tab:AddButton({
+    Name = "力量传奇",
+    Callback =function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua'))()
+end
+})
+Tab:AddButton({
+	Name = "伐木大亨2多功能",
+	Callback = function()
+     loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/butter-hub/main/Butterhub.txt'))()
+  	end
+})
+Tab:AddButton({
+	Name = "管理员脚本(不是伐木)",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+  	end    
+})
+Tab:AddButton({
+	Name = "彩虹朋友",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/Rainbow-Friends/main/Rainbow%20Friends"))()
+  	end    
+})
+Tab:AddButton({
+	Name = "战争大亨",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/megamoeus/UI-Engine-V2/main/OWTPublic"))()
     end
-  else
-    local localPlayer = game.Players.LocalPlayer
-    for _, player in pairs(game.Players:GetPlayers()) do
-      if player ~= localPlayer then
-        table.insert(PlayerConfig.dropdown, player.Name)
-      end
-    end
-  end
+})
+Tab:AddButton({
+	Name = "HoHo",
+	Callback = function()
+     loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+  	end    
+})
+Tab:AddButton({
+	Name = "tds查看兵",
+	Callback = function()
+     local Towers = game:GetService("Players").LocalPlayer.PlayerGui.Interface.Root.Inventory.View.Frame.Frame.Frame
+ 
+for _, v in pairs(Towers:GetDescendants()) do
+	if v:IsA("ImageButton") then
+        v.Visible = true
+	end
 end
-shuaxinlb(true)
-function Notify(title, text, icon, duration)
-  
-  game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = title,
-    Text = text,
-    Icon = icon,
-    Duration = duration,
-  })
-end
-local function SafeCall(func, ...)
-  
-  local success, result = pcall(func, ...)
-  if not success then
-    return nil
-  end
-  return result
-end
-local FOVCircle = nil
-local FOVLine1 = nil
-local FOVLine2 = nil
-local function InitFOV(radius, color, thickness, transparency)
-  
-  local RunService = game:GetService("RunService")
-  local UserInputService = game:GetService("UserInputService")
-  local Players = game:GetService("Players")
-  local Camera = game.Workspace.CurrentCamera
-  if FOVCircle then
-    FOVCircle:Remove()
-    FOVCircle = nil
-  end
-  FOVCircle = Drawing.new("Circle")
-  FOVCircle.Visible = true
-  FOVCircle.Thickness = thickness
-  FOVCircle.Color = color
-  FOVCircle.Filled = false
-  FOVCircle.Radius = radius
-  FOVCircle.Position = Camera.ViewportSize / 2
-  FOVCircle.Transparency = transparency
-  FOVLine1 = Drawing.new("Line")
-  FOVLine1.Visible = false
-  FOVLine1.Thickness = 2
-  FOVLine1.Color = Color3.fromRGB(255, 0, 0)
-  FOVLine1.Transparency = 1
-  FOVLine2 = Drawing.new("Line")
-  FOVLine2.Visible = true
-  FOVLine2.Thickness = 1
-  FOVLine2.Color = Color3.fromRGB(255, 255, 255)
-  FOVLine2.Transparency = 1
-  local function UpdateFOVDisplay()
-    
-    local viewportSize = Camera.ViewportSize
-    FOVCircle.Position = viewportSize / 2
-    if AimConfig.dynamicFOV then
-      FOVCircle.Radius = AimConfig.fovsize * AimConfig.dynamicFOVScale
-    else
-      FOVCircle.Radius = AimConfig.fovsize
-    end
-    FOVLine2.From = Vector2.new(viewportSize.X / 2 - 5, viewportSize.Y / 2)
-    FOVLine2.To = Vector2.new(viewportSize.X / 2 + 5, viewportSize.Y / 2)
-    FOVLine2.From = Vector2.new(viewportSize.X / 2, viewportSize.Y / 2 - 5)
-    FOVLine2.To = Vector2.new(viewportSize.X / 2, viewportSize.Y / 2 + 5)
-  end
-  UserInputService.InputBegan:Connect(function(input)
-    
-    if input.KeyCode == Enum.KeyCode.Delete then
-      RunService:UnbindFromRenderStep("FOVUpdate")
-      FOVCircle:Remove()
-      FOVCircle = nil
-      FOVLine1:Remove()
-      FOVLine1 = nil
-      FOVLine2:Remove()
-      FOVLine2 = nil
-    end
-  end)
-  RunService.RenderStepped:Connect(function()
-    
-    UpdateFOVDisplay()
-  end)
-end
-local function CleanupFOV()
-  
-  if FOVCircle then
-    FOVCircle:Remove()
-    FOVCircle = nil
-  end
-  if FOVLine1 then
-    FOVLine1:Remove()
-    FOVLine1 = nil
-  end
-  if FOVLine2 then
-    FOVLine2:Remove()
-    FOVLine2 = nil
-  end
-end
-local function UpdateFOVSettings()
-  
-  if FOVCircle then
-    FOVCircle.Thickness = AimConfig.fovthickness
-    FOVCircle.Radius = AimConfig.fovsize
-    FOVCircle.Color = AimConfig.fovcolor
-    FOVCircle.Transparency = AimConfig.Transparency / 10
-  end
-end
-local function IsSameTeam(player)
-  
-  return player.Tea
+  	end    
+})
+Tab:AddButton({
+	Name = "阿尔宙斯V3.0 UI",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+  	end    
+})
+Tab:AddButton({
+	Name = "力量传奇Muscle Legend",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/harisiskandar178/Roblox-Script/main/Muscle%20Legend"))()
+  	end    
+})
+Tab:AddButton({
+	Name = "bark2.0",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/UWU/main/bark2.0.lua"))()
+  	end    
+})
+local Tab = Window:MakeTab({
+	Name = "造船寻宝",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+
+local Section = Tab:AddSection({
+	Name = "付费功能"
+})
+
+
+
+
+Tab:AddButton({
+	Name = "自动刷金条",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/Lyy77rnr",true))()
+  	end
+})
+
+Tab:AddButton({
+	Name = "工具包",
+	Callback = function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()	
+  	end
+})
+Tab:AddButton({
+	Name = "防止掉线（反挂机）",
+	C
