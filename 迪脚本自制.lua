@@ -1,4 +1,4 @@
-local CoreGui = game:GetService("StarterGui")
+local CoreGui = game:GetService("https://raw.githubusercontent.com/ddjlb7598/-3.0000/refs/heads/main/%E5%A4%A7%E5%8F%B8%E9%A9%ACLOL%20UI.lua")
 
 CoreGui:SetCore("SendNotification", {
     Title = "😡脚本",
@@ -12,7 +12,8 @@ print("Anti Afk On")
 		   wait(1)
 		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 		end)
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ddjlb7598/-3.0000/refs/heads/main/%E5%A4%A7%E5%8F%B8%E9%A9%ACLOL%20UI.lua"))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/xLRUSiKx'))()
 
 CoreGui:SetCore("SendNotification", {
     Title = "迪脚本",
@@ -298,10 +299,4 @@ Tab:AddButton({
 
 Tab:AddButton({
 	Name = "工具包",
-	Callback = function()
-	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()	
-  	end
-})
-Tab:AddButton({
-	Name = "防止掉线（反挂机）",
-	C
+	Callback = fun
