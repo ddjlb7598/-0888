@@ -504,6 +504,9 @@ end)
 about:Button("无敌少萝脚本",function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
 end)
+about:Button("自瞄脚本",function()
+    loadstring(game:HttpGet("https://github.com/ZS-NB/KG/raw/main/张硕.lua"))()
+end)
 
 local UITab7 = win:Tab("『服务器脚本』",'7734068321')
 
