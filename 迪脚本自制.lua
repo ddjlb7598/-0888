@@ -67,10 +67,9 @@ local UITab2 = win:Tab("『公告』",'7734068321')
 local about = UITab2:section("『公告』",true)
 
 about:Label("当前使用版本是内测版本")
-Icon = "rbxassetid://73219704811084"
 about:Label("如果你从别人那里得知脚本")
 about:Label("100%是自己人泄露的")
-about:Label("")
+about:Label("耄耋/h2165759608/h总赞助0.78")
 about:Label("")
 about:Label("")
 about:Label("")
