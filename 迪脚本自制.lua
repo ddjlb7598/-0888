@@ -504,3 +504,11 @@ end)
 about:Button("无敌少萝脚本",function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
 end)
+
+local UITab7 = win:Tab("『服务器脚本』",'7734068321')
+
+local about = UITab7:section("『服务器脚本』",true)
+
+about:Button("被遗弃脚本汉化",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/%E8%A2%AB%E9%81%97%E5%BC%83"))()
+end)
